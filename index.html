@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>מתנדבים כשנוח לכם</title>
+<meta name="description" content="הצטרפו כמתנדבים: מקבלים הודעה קצרה על מי שצריך עזרה, ולוקחים רק מה שמתאים לכם.">
+<style>
+:root{--green:#25804F;--green-dark:#1E6A41;--green-mid:#3DAA73;--tint:#DDF3E5;--bg:#F4F9F5;--card:#fff;--border:#B9DCC6;--ink:#1F3A2E;--muted:#4F6B5B;--accent:#F4B942;--orange:#E8872B;--error:#C23B3B;--error-bg:#FBECEC;--deep:#173F2C}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);line-height:1.6;font-family:"Segoe UI","Heebo","Arial Hebrew",Arial,Tahoma,sans-serif;font-size:18px;-webkit-text-size-adjust:100%;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:72px 0}
+h1,h2,h3,p{margin:0}
+h2{font-size:clamp(26px,4.4vw,38px);line-height:1.2;text-align:center;margin-bottom:10px}
+.lead{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 40px;font-size:clamp(17px,2.2vw,20px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:58px;padding:14px 36px;background:var(--green);color:#fff;border:0;border-radius:16px;font:inherit;font-weight:700;font-size:20px;cursor:pointer;transition:background .15s,transform .15s,box-shadow .15s;text-decoration:none;box-shadow:0 10px 24px rgba(37,128,79,.28)}
+.btn:hover{background:var(--green-dark);transform:translateY(-1px)}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible,input:focus-visible{outline:3px solid var(--green-mid);outline-offset:2px}
+.btn[disabled]{opacity:.75;cursor:progress}
+.chip{display:inline-block;background:var(--tint);color:var(--green);font-weight:700;font-size:15px;padding:6px 16px;border-radius:99px;margin-bottom:18px}
+
+/* hero */
+.hero{padding:48px 0 64px;background:linear-gradient(180deg,#E6F6EC 0%,var(--bg) 100%);position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
+.hero h1{font-size:clamp(36px,6vw,60px);line-height:1.08;margin-bottom:18px;letter-spacing:-.5px}
+.hero h1 em{font-style:normal;color:var(--green);background:linear-gradient(transparent 62%,rgba(244,185,66,.55) 62%)}
+.hero p.sub{font-size:clamp(18px,2.4vw,22px);color:var(--muted);margin-bottom:28px;max-width:520px}
+.hero .note{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font-size:16px}
+.hero .note span::before{content:"✓";color:var(--green);font-weight:700;margin-inline-end:6px}
+.stage{position:relative;display:grid;place-items:center;min-height:470px}
+.stage .blob{position:absolute;width:420px;height:420px;border-radius:46% 54% 50% 50%/55% 45% 55% 45%;background:var(--tint);left:50%;top:50%;transform:translate(-50%,-50%)}
+.phone{z-index:2;position:relative;width:250px;background:#16231c;border-radius:36px;padding:10px;box-shadow:0 30px 60px rgba(23,63,44,.28);transform:rotate(-3deg)}
+.phone .screen{background:var(--bg);border-radius:28px;padding:16px 12px 18px;min-height:420px}
+.phone .notch{width:70px;height:6px;background:#16231c;border-radius:6px;margin:0 auto 14px}
+.toast{background:#fff;border-radius:14px;padding:10px 12px;font-size:13px;line-height:1.4;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:14px;border:1px solid var(--border)}
+.toast b{display:block;color:var(--green);font-size:12px;margin-bottom:2px}
+.app{background:#fff;border:1.5px solid var(--green-mid);border-radius:16px;padding:14px}
+.badge{display:inline-block;border-radius:99px;padding:2px 12px;font-size:12.5px;font-weight:700}
+.badge.o{background:#EDF8F2;color:#1F7A52;border:1px solid var(--green-mid)}
+.badge.c{background:#E9ECEA;color:#555;border:1px solid #aaa}
+.app h4{margin:8px 0 2px;font-size:16px;color:var(--ink)}
+.app .meta{font-size:13px;color:var(--muted);margin-bottom:10px}
+.app .take{background:var(--green);color:#fff;text-align:center;font-weight:700;border-radius:10px;padding:10px;font-size:15px}
+.app .take.g{background:#8e9993}
+.app .rows{background:var(--tint);border-radius:10px;padding:8px 10px;font-size:13px;margin-top:8px;line-height:1.55}
+.float{z-index:3;position:absolute;background:#fff;border-radius:14px;padding:10px 14px;font-size:14px;font-weight:700;box-shadow:0 10px 24px rgba(23,63,44,.18);display:flex;gap:8px;align-items:center;animation:bob 4s ease-in-out infinite}
+.float.a{top:48px;left:0;color:var(--green)}
+.float.b{bottom:64px;right:0;color:var(--orange);animation-delay:1.5s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* what you can do */
+.ideas{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.idea{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 8px 22px rgba(37,128,79,.08);transition:transform .2s}
+.idea:hover{transform:translateY(-4px)}
+.idea svg{display:block;width:100%;height:auto}
+.idea div{padding:16px 18px 20px}
+.idea h3{font-size:20px;margin-bottom:4px}
+.idea p{color:var(--muted);font-size:16px}
+
+/* benefits */
+.benefits{background:#fff;border-block:1px solid var(--border)}
+.bgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.ben{display:flex;gap:18px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:20px;padding:24px}
+.ben .ic{flex:none;width:58px;height:58px;border-radius:18px;background:var(--green);display:grid;place-items:center}
+.ben .ic svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ben h3{font-size:21px;margin-bottom:4px}
+.ben p{color:var(--muted);font-size:16.5px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative}
+.step{background:#fff;border:1px solid var(--border);border-radius:22px;padding:26px 22px;text-align:center;box-shadow:0 8px 22px rgba(37,128,79,.08)}
+.step .n{width:42px;height:42px;border-radius:50%;background:var(--accent);color:var(--deep);font-weight:800;font-size:20px;display:grid;place-items:center;margin:0 auto 14px}
+.step svg{width:96px;height:96px;margin:0 auto 10px;display:block}
+.step h3{font-size:21px;margin-bottom:6px}
+.step p{color:var(--muted);font-size:16.5px}
+
+/* states demo */
+.states{background:linear-gradient(180deg,var(--bg),#E6F6EC)}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:900px;margin:0 auto}
+.sitem{text-align:center}
+.sitem .app{text-align:right;min-height:176px;box-shadow:0 14px 30px rgba(23,63,44,.12)}
+.sitem .app.closed{border-color:#bbb;background:#F3F4F3;color:#666}
+.sitem .cap{margin-top:12px;font-weight:700;color:var(--green)}
+
+/* community */
+.community{background:var(--deep);color:#fff;text-align:center}
+.community h2{color:#fff}
+.community .lead{color:#C9E4D5;margin-bottom:28px}
+.community svg{width:100%;max-width:760px;height:auto;display:block;margin:0 auto}
+
+/* form */
+.join{background:linear-gradient(180deg,#E6F6EC,var(--bg))}
+.card{max-width:540px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:24px;padding:38px 30px;box-shadow:0 20px 50px rgba(37,128,79,.16)}
+.card h2{font-size:clamp(26px,4vw,34px);margin-bottom:8px}
+.card .sub2{text-align:center;color:var(--muted);margin-bottom:24px;font-size:17px}
+label{display:block;font-weight:600;margin-bottom:6px;font-size:17px}
+.field{margin-bottom:18px}
+input[type=text],input[type=email]{width:100%;min-height:56px;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font:inherit;color:var(--ink);background:#fff}
+input[type=email]{direction:ltr;text-align:right}
+input:focus{border-color:var(--green-mid);background:#F7FCF9;outline:none}
+input[aria-invalid=true]{border-color:var(--error)}
+.err{color:var(--error);font-size:15.5px;margin-top:6px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);opacity:0;pointer-events:none}
+.card .btn{width:100%;margin-top:6px}
+.fine{text-align:center;color:var(--muted);font-size:14.5px;margin-top:14px}
+.banner{background:var(--error-bg);border:1px solid var(--error);color:#7A2020;border-radius:12px;padding:14px 16px;margin-bottom:18px;font-size:16.5px}
+.spin{width:20px;height:20px;border-radius:50%;border:3px solid rgba(255,255,255,.4);border-top-color:#fff;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.thanks{text-align:center;padding:12px 0}
+.thanks .ok{width:80px;height:80px;border-radius:50%;background:var(--green);margin:0 auto 20px;display:grid;place-items:center}
+.thanks .ok svg{width:42px;height:42px;stroke:#fff;fill:none;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:50;stroke-dashoffset:50;animation:draw .5s .15s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.thanks p{color:var(--muted)}
+.hidden{display:none!important}
+.org{max-width:640px;margin:36px auto 0;text-align:center;color:var(--muted);font-size:16px;background:#fff;border:1px dashed var(--border);border-radius:16px;padding:16px 20px}
+.org b{color:var(--ink)}
+footer{text-align:center;color:var(--muted);font-size:14.5px;padding:8px 20px 36px}
+
+@media (max-width:900px){.ideas{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:760px){
+ body{font-size:17px}
+ section{padding:48px 0}
+ .hero{padding:28px 0 40px}
+ .hero .wrap{grid-template-columns:1fr;text-align:center}
+ .hero p.sub{margin-inline:auto}
+ .hero .note{justify-content:center}
+ .stage{min-height:440px}
+ .stage .blob{width:340px;height:340px}
+ .float.a{left:-4px;top:24px}
+ .float.b{right:-4px}
+ .bgrid,.steps,.sgrid{grid-template-columns:1fr}
+ .btn{width:100%}
+ .card{padding:28px 18px;border-radius:20px}
+}
+@media (max-width:430px){.ideas{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.thanks .ok svg{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<header class="hero"><div class="wrap">
+ <div>
+  <span class="chip">מתנדבים בקהילה</span>
+  <h1>יש מי שצריך אתכם. <em>ואתם בוחרים מתי</em></h1>
+  <p class="sub">מקבלים הודעה קצרה על בקשת עזרה בקהילה, ולוחצים "אני לוקח/ת" רק כשזה מתאים לכם. בלי טלפונים, בלי קבוצות רועשות, ובלי להגיע לבקשה שכבר נלקחה.</p>
+  <a class="btn" href="#join">אני רוצה לעזור</a>
+  <div class="note"><span>בחינם</span><span>בלי התחייבות</span><span>לוקח דקה</span></div>
+ </div>
+ <div class="stage" aria-hidden="true">
+  <div class="blob"></div>
+  <div class="float a">✓ הבקשה נלקחה</div>
+  <div class="phone"><div class="screen"><div class="notch"></div>
+   <div class="toast"><b>בקשת עזרה חדשה</b>להחליף נורה בחדר הפעילות. שכונת אבני חן, מודיעין.</div>
+   <div class="app"><span class="badge o">פתוחה</span><h4>להחליף נורה בחדר הפעילות</h4><div class="meta">אבני חן, מודיעין · היום עד 18:00</div><div class="take">אני לוקח/ת</div></div>
+  </div></div>
+  <div class="float b">♥ תודה שעזרתם</div>
+ </div>
+</div></header>
+
+<section aria-labelledby="t-ideas"><div class="wrap">
+ <h2 id="t-ideas">עזרה קטנה, שמשנה יום שלם</h2>
+ <p class="lead">רוב הבקשות לוקחות שעה או פחות. אתם בוחרים מה מתאים לכם, מתי ואיפה.</p>
+ <div class="ideas">
+  <div class="idea"><svg viewBox="0 0 300 170" aria-hidden="true"><rect width="300" height="170" fill="#FFF3D6"/><circle cx="150" cy="95" r="70" fill="#FFE29A" opacity=".55"/><circle cx="150" cy="95" r="44" fill="#FFD36B" opacity=".6"/><path d="M150 0v46" stroke="#5B7A69" stroke-width="4"/><rect x="138" y="44" width="24" height="16" rx="3" fill="#5B7A69"/><path d="M135 62h30c10 10 22 26 22 42a37 37 0 0 1-74 0c0-16 12-32 22-42z" fill="#F4B942"/><path d="M140 120l10-22 10 22" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g stroke="#E8872B" stroke-width="4" stroke-linecap="round"><path d="M70 50l14 8M230 50l-14 8M58 100h18M242 100h-18"/></g><rect x="205" y="128" width="62" height="10" rx="5" fill="#25804F"/><path d="M215 138v26M257 138v26" stroke="#25804F" stroke-width="6" stroke-linecap="round"/></svg><div><h3>להחליף נורה</h3><p>דבר קטן שלא כל אחד יכול לעשות לבד.</p></div></div>
+  <div class="idea"><svg viewBox="0 0 300 170" aria-hidden="true"><rect width="300" height="170" fill="#E4F2EA"/><path d="M0 0h70c-8 40-8 90 0 170H0z" fill="#25804F"/><path d="M300 0h-70c8 40 8 90 0 170h70z" fill="#25804F"/><path d="M40 0c10 50 8 100 0 170M24 0c8 50 8 100 0 170" stroke="#1E6A41" stroke-width="3" fill="none"/><path d="M260 0c-10 50-8 100 0 170M276 0c-8 50-8 100 0 170" stroke="#1E6A41" stroke-width="3" fill="none"/><g transform="translate(112 60) rotate(-10)"><path d="M0 0h54v40c0 28-12 44-27 44S0 68 0 40z" fill="#F4B942"/><circle cx="16" cy="32" r="5" fill="#1F3A2E"/><circle cx="38" cy="32" r="5" fill="#1F3A2E"/><path d="M14 52q13 14 26 0" stroke="#1F3A2E" stroke-width="4" fill="none" stroke-linecap="round"/></g><g transform="translate(152 74) rotate(12)"><path d="M0 0h54v40c0 28-12 44-27 44S0 68 0 40z" fill="#fff"/><circle cx="16" cy="32" r="5" fill="#1F3A2E"/><circle cx="38" cy="32" r="5" fill="#1F3A2E"/><path d="M14 64q13-12 26 0" stroke="#1F3A2E" stroke-width="4" fill="none" stroke-linecap="round"/></g><g fill="#F4B942"><path d="M150 22l4 9 10 1-8 7 3 10-9-6-9 6 3-10-8-7 10-1z"/></g></svg><div><h3>ללוות להצגה</h3><p>ערב תרבות שבו כמה מתנדבים מלווים יחד.</p></div></div>
+  <div class="idea"><svg viewBox="0 0 300 170" aria-hidden="true"><rect width="300" height="170" fill="#E3EFFA"/><circle cx="240" cy="40" r="20" fill="#FFE29A"/><path d="M0 128h300v42H0z" fill="#5B7A69"/><path d="M0 148h300" stroke="#fff" stroke-width="4" stroke-dasharray="26 18"/><path d="M52 118l16-34c4-8 10-12 20-12h86c10 0 18 4 24 12l22 24c10 2 16 8 16 18v6H52z" fill="#25804F"/><path d="M84 84h38v26H70zM132 84h40c6 0 10 2 14 8l10 18h-64z" fill="#DDF3E5"/><circle cx="104" cy="130" r="18" fill="#1F3A2E"/><circle cx="104" cy="130" r="8" fill="#B9DCC6"/><circle cx="208" cy="130" r="18" fill="#1F3A2E"/><circle cx="208" cy="130" r="8" fill="#B9DCC6"/><path d="M150 40c-8-12-26-4-18 10 5 8 18 16 18 16s13-8 18-16c8-14-10-22-18-10z" fill="#E8872B"/></svg><div><h3>להסיע</h3><p>טרמפ בקהילה למי שאין לו איך להגיע.</p></div></div>
+  <div class="idea"><svg viewBox="0 0 300 170" aria-hidden="true"><rect width="300" height="170" fill="#FBEAE0"/><ellipse cx="150" cy="140" rx="86" ry="10" fill="#E9CDBB"/><path d="M104 78h92v32c0 22-18 34-46 34s-46-12-46-34z" fill="#fff"/><path d="M196 88h14c12 0 12 24 0 24h-16" stroke="#fff" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M104 88h92" stroke="#E8872B" stroke-width="6"/><path d="M128 66c-8-10 8-14 0-26M150 66c-8-10 8-14 0-26M172 66c-8-10 8-14 0-26" stroke="#C99E86" stroke-width="4" fill="none" stroke-linecap="round"/><g><rect x="30" y="30" width="62" height="38" rx="14" fill="#25804F"/><path d="M70 66l12 14V66z" fill="#25804F"/><circle cx="48" cy="49" r="4" fill="#fff"/><circle cx="61" cy="49" r="4" fill="#fff"/><circle cx="74" cy="49" r="4" fill="#fff"/></g><g><rect x="212" y="22" width="62" height="38" rx="14" fill="#F4B942"/><path d="M230 58l-12 14V58z" fill="#F4B942"/><path d="M228 42h30M228 50h20" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g></svg><div><h3>לשבת לכוס תה</h3><p>ביקור קצר, ושיחה טובה.</p></div></div>
+ </div>
+</div></section>
+
+<section class="benefits" aria-labelledby="t-ben"><div class="wrap">
+ <h2 id="t-ben">למה מתנדבים אוהבים את זה</h2>
+ <p class="lead">יוצרים בשבילכם חוויה שמכבדת את הזמן שלכם.</p>
+ <div class="bgrid">
+  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></div><div><h3>אתם בוחרים</h3><p>לוקחים רק בקשה שמתאימה לכם, ומתעלמים מהשאר בלי הסברים.</p></div></div>
+  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><div><h3>רואים מיד אם עוד צריכים</h3><p>הדף מתעדכן בזמן אמת. אם הבקשה כבר נלקחה, תדעו לפני שיצאתם מהבית.</p></div></div>
+  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div><h3>הפרטים נשמרים</h3><p>כתובת ופרטי הקשר המלאים נחשפים רק למי שלקח את הבקשה.</p></div></div>
+  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg></div><div><h3>בלי התחייבות</h3><p>אין מכסה ואין לחץ. עוזרים כשיש כוח, ומחכים כשאין.</p></div></div>
+ </div>
+</div></section>
+
+<section aria-labelledby="t-how"><div class="wrap">
+ <h2 id="t-how">שלושה צעדים, וזה קורה</h2>
+ <p class="lead">מההודעה ועד הדלת של מי שצריך עזרה.</p>
+ <div class="steps">
+  <div class="step"><div class="n">1</div><svg viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" fill="#DDF3E5"/><path d="M48 22c-11 0-18 8-18 19v10l-6 10h48l-6-10V41c0-11-7-19-18-19z" fill="#25804F"/><path d="M41 66a7 7 0 0 0 14 0z" fill="#F4B942"/><circle cx="66" cy="28" r="8" fill="#E8872B"/></svg><h3>מקבלים הודעה</h3><p>תיאור קצר ושכונה, כדי להבין מיד אם זה מתאים.</p></div>
+  <div class="step"><div class="n">2</div><svg viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" fill="#DDF3E5"/><rect x="28" y="16" width="40" height="64" rx="8" fill="#16231c"/><rect x="32" y="24" width="32" height="48" rx="4" fill="#fff"/><rect x="36" y="52" width="24" height="10" rx="5" fill="#25804F"/><path d="M36 32h24M36 40h16" stroke="#B9DCC6" stroke-width="3" stroke-linecap="round"/><circle cx="64" cy="64" r="9" fill="#F4B942" opacity=".9"/></svg><h3>לוחצים "אני לוקח/ת"</h3><p>הדף האישי שלכם מראה אם הבקשה עדיין פתוחה.</p></div>
+  <div class="step"><div class="n">3</div><svg viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="44" fill="#DDF3E5"/><path d="M22 48L48 24l26 24v26H22z" fill="#25804F"/><rect x="42" y="56" width="12" height="18" rx="2" fill="#fff"/><path d="M60 36l6 6" stroke="#1E6A41" stroke-width="3"/><path d="M48 14c-5-7-15-2-11 6 3 5 11 9 11 9s8-4 11-9c4-8-6-13-11-6z" fill="#E8872B"/></svg><h3>מקבלים את הפרטים</h3><p>כתובת ופרטי קשר מופיעים, ואתם יוצאים לעזור.</p></div>
+ </div>
+</div></section>
+
+<section class="states" aria-labelledby="t-states"><div class="wrap">
+ <h2 id="t-states">ככה זה נראה אצלכם בטלפון</h2>
+ <p class="lead">דף אחד פשוט, שתמיד מראה את המצב העדכני.</p>
+ <div class="sgrid" aria-hidden="true">
+  <div class="sitem"><div class="app"><span class="badge o">פתוחה</span><h4>ללוות להצגה בשישי</h4><div class="meta">נשארו 3 מקומות מתוך 5</div><div class="take">אני לוקח/ת</div></div><div class="cap">מחכה למישהו כמוכם</div></div>
+  <div class="sitem"><div class="app"><span class="badge o">נרשמת</span><h4>תודה! הבקשה שלכם</h4><div class="rows">כתובת: [רחוב ומספר]<br>טלפון: [מספר]<br>הערות כניסה: [הערות]</div></div><div class="cap">רק אחרי שלקחתם</div></div>
+  <div class="sitem"><div class="app closed"><span class="badge c">✕ סגורה</span><h4>הבקשה כבר נלקחה</h4><div class="meta">תודה על הרצון לעזור! נשלח לכם הודעה כשתהיה בקשה חדשה.</div></div><div class="cap">בלי לחפש, בלי להתקשר</div></div>
+ </div>
+</div></section>
+
+<section class="community" aria-labelledby="t-comm"><div class="wrap">
+ <h2 id="t-comm">כשכל אחד לוקח דבר קטן, אף אחד לא נשאר לבד</h2>
+ <p class="lead">הצטרפו לקהילה של אנשים שמגיעים כשצריך.</p>
+ <svg viewBox="0 0 760 190" aria-hidden="true"><path d="M90 40Q210 -10 330 34T570 40T670 52" stroke="#3DAA73" stroke-width="3" fill="none" stroke-dasharray="3 9" stroke-linecap="round"/><g transform="translate(90 0)"><circle cx="0" cy="70" r="20" fill="#F2C9A0"/><path d="M-30 150c0-34 14-54 30-54s30 20 30 54z" fill="#F4B942"/></g><g transform="translate(210 0)"><circle cx="0" cy="80" r="20" fill="#E3B58C"/><path d="M-30 160c0-34 14-54 30-54s30 20 30 54z" fill="#3DAA73"/></g><g transform="translate(330 0)"><circle cx="0" cy="64" r="20" fill="#D9A679"/><path d="M-30 144c0-34 14-54 30-54s30 20 30 54z" fill="#fff"/></g><g transform="translate(450 0)"><circle cx="0" cy="80" r="20" fill="#F2C9A0"/><path d="M-30 160c0-34 14-54 30-54s30 20 30 54z" fill="#E8872B"/></g><g transform="translate(570 0)"><circle cx="0" cy="70" r="20" fill="#E3B58C"/><path d="M-30 150c0-34 14-54 30-54s30 20 30 54z" fill="#B9DCC6"/></g><g transform="translate(670 0)"><circle cx="0" cy="84" r="20" fill="#D9A679"/><path d="M-30 164c0-34 14-54 30-54s30 20 30 54z" fill="#F4B942"/></g><g fill="#E8872B"><path d="M210 22c-5-7-15-2-11 6 3 5 11 9 11 9s8-4 11-9c4-8-6-13-11-6z"/><path d="M450 18c-5-7-15-2-11 6 3 5 11 9 11 9s8-4 11-9c4-8-6-13-11-6z"/></g><g fill="#F4B942"><path d="M330 14l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/></g></svg>
+</div></section>
+
+<section class="join" id="join" aria-labelledby="t-join"><div class="wrap">
+ <div class="card">
+  <div id="formView">
+   <h2 id="t-join">רוצים לעזור? מצטרפים בדקה</h2>
+   <p class="sub2">השאירו שם וכתובת מייל ונחזור אליכם עם הצעד הבא.</p>
+   <div id="banner" class="banner hidden" role="alert"></div>
+   <form id="leadForm" novalidate>
+    <div class="field"><label for="name">שם</label><input type="text" id="name" name="name" autocomplete="name" required aria-describedby="nameErr"><div class="err" id="nameErr" aria-live="polite"></div></div>
+    <div class="field"><label for="email">כתובת מייל</label><input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com" required aria-describedby="emailErr"><div class="err" id="emailErr" aria-live="polite"></div></div>
+    <div class="hp" aria-hidden="true"><label>אל תמלאו<input type="text" id="website" tabindex="-1" autocomplete="off"></label></div>
+    <button class="btn" type="submit" id="submitBtn">אני רוצה לעזור</button>
+    <p class="fine">אין התחייבות. תלקחו רק מה שמתאים לכם.</p>
+   </form>
+  </div>
+  <div id="thanksView" class="thanks hidden" tabindex="-1" role="status" aria-live="polite">
+   <div class="ok" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M9 21l8 8 14-17"/></svg></div>
+   <h2>תודה, <span id="thanksName"></span>!</h2>
+   <p>קיבלנו את הפרטים. נחזור אליכם במייל בהקדם עם הצעד הבא להצטרפות.</p>
+  </div>
+ </div>
+ <div class="org"><b>עמותה?</b> הרכזת פותחת בקשה בדקה, וכל המתנדבים מקבלים אותה בבת אחת, בלי טלפונים אחד-אחד.</div>
+</div></section>
+<footer>מערכת להקפצת בקשות עזרה למתנדבים</footer>
+
+<script>
+/* ===== הגדרות =====
+   הדביקו כאן את כתובת ה-webhook שמקבלת את הפרטים (למשל מ-Make).
+   הדף שולח POST בפורמט JSON: { name, email, submittedAt, source } */
+var FORM_ENDPOINT = "PASTE_WEBHOOK_URL_HERE";
+var TIMEOUT_MS = 15000;
+
+/* תצוגה מקדימה בלי חיבור: הוסיפו ?demo=ok או ?demo=fail לכתובת הקובץ */
+var demo = new URLSearchParams(location.search).get("demo");
+
+var form = document.getElementById("leadForm");
+var nameEl = document.getElementById("name"), emailEl = document.getElementById("email");
+var nameErr = document.getElementById("nameErr"), emailErr = document.getElementById("emailErr");
+var banner = document.getElementById("banner"), btn = document.getElementById("submitBtn");
+var btnLabel = btn.textContent;
+
+function setErr(input, box, msg){
+  box.textContent = msg || "";
+  if(msg){ input.setAttribute("aria-invalid","true"); } else { input.removeAttribute("aria-invalid"); }
+  return !msg;
+}
+function checkName(){
+  var v = nameEl.value.trim();
+  return setErr(nameEl, nameErr, v.length < 2 ? "נא למלא שם (לפחות 2 תווים)" : "");
+}
+function checkEmail(){
+  var v = emailEl.value.trim();
+  var msg = "";
+  if(!v){ msg = "נא למלא כתובת מייל"; }
+  else if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)){ msg = "כתובת המייל אינה תקינה. בדקו שיש @ ודומיין, למשל name@gmail.com"; }
+  return setErr(emailEl, emailErr, msg);
+}
+nameEl.addEventListener("blur", checkName);
+emailEl.addEventListener("blur", checkEmail);
+
+function showBanner(msg){ banner.textContent = msg; banner.classList.remove("hidden"); }
+function hideBanner(){ banner.classList.add("hidden"); }
+function setSending(on){
+  btn.disabled = on;
+  btn.innerHTML = on ? '<span class="spin" aria-hidden="true"></span> שולח...' : btnLabel;
+}
+function showThanks(name){
+  document.getElementById("thanksName").textContent = name;
+  document.getElementById("formView").classList.add("hidden");
+  var t = document.getElementById("thanksView");
+  t.classList.remove("hidden");
+  t.focus();
+  t.scrollIntoView({behavior:"smooth", block:"center"});
+}
+
+var FAIL_MSG = "לא הצלחנו לשלוח את הפרטים. בדקו את החיבור לאינטרנט ונסו שוב בעוד רגע. הפרטים שמילאתם נשארו בטופס.";
+
+function send(payload){
+  if(demo === "ok"){ return new Promise(function(r){ setTimeout(r, 700); }); }
+  if(demo === "fail"){ return new Promise(function(_, j){ setTimeout(function(){ j(new Error("demo")); }, 700); }); }
+  if(!FORM_ENDPOINT || FORM_ENDPOINT.indexOf("PASTE_") === 0){
+    console.warn("FORM_ENDPOINT לא הוגדר. הדביקו כתובת webhook בראש הסקריפט.");
+    return Promise.reject(new Error("not-configured"));
+  }
+  var ctrl = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, TIMEOUT_MS);
+  return fetch(FORM_ENDPOINT, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify(payload),
+    signal: ctrl.signal
+  }).then(function(res){
+    clearTimeout(timer);
+    if(!res.ok){ throw new Error("http-" + res.status); }
+  }, function(e){ clearTimeout(timer); throw e; });
+}
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  hideBanner();
+  var okName = checkName(), okEmail = checkEmail();
+  if(!okName){ nameEl.focus(); return; }
+  if(!okEmail){ emailEl.focus(); return; }
+  if(document.getElementById("website").value){ showThanks(nameEl.value.trim()); return; } /* מלכודת בוטים */
+  var name = nameEl.value.trim();
+  var payload = { name: name, email: emailEl.value.trim().toLowerCase(), submittedAt: new Date().toISOString(), source: "volunteer-landing-page" };
+  setSending(true);
+  send(payload).then(function(){
+    showThanks(name);
+  }).catch(function(){
+    setSending(false);
+    showBanner(FAIL_MSG);
+  });
+});
+</script>
+</body>
+</html>
