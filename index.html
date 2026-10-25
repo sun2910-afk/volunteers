@@ -20,13 +20,13 @@ h2{font-size:clamp(26px,4.4vw,38px);line-height:1.2;text-align:center;margin-bot
 .btn:active{transform:scale(.98)}
 .btn:focus-visible,input:focus-visible{outline:3px solid var(--green-mid);outline-offset:2px}
 .btn[disabled]{opacity:.75;cursor:progress}
-.chip{display:inline-block;background:var(--tint);color:var(--green);font-weight:700;font-size:15px;padding:6px 16px;border-radius:99px;margin-bottom:18px}
+.chip{display:inline-block;background:var(--tint);color:var(--green-dark);font-weight:700;font-size:15px;padding:6px 16px;border-radius:99px;margin-bottom:18px}
 
 /* hero */
 .hero{padding:48px 0 64px;background:linear-gradient(180deg,#E6F6EC 0%,var(--bg) 100%);position:relative;overflow:hidden}
 .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
 .hero h1{font-size:clamp(36px,6vw,60px);line-height:1.08;margin-bottom:18px;letter-spacing:-.5px}
-.hero h1 em{font-style:normal;color:var(--green);background:linear-gradient(transparent 62%,rgba(244,185,66,.55) 62%)}
+.hero h1 em{font-style:normal;color:var(--green-dark);background:linear-gradient(transparent 62%,rgba(244,185,66,.55) 62%)}
 .hero p.sub{font-size:clamp(18px,2.4vw,22px);color:var(--muted);margin-bottom:28px;max-width:520px}
 .hero .note{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;color:var(--muted);font-size:16px}
 .hero .note span::before{content:"✓";color:var(--green);font-weight:700;margin-inline-end:6px}
@@ -46,9 +46,9 @@ h2{font-size:clamp(26px,4.4vw,38px);line-height:1.2;text-align:center;margin-bot
 .app .take{background:var(--green);color:#fff;text-align:center;font-weight:700;border-radius:10px;padding:10px;font-size:15px}
 .app .take.g{background:#8e9993}
 .app .rows{background:var(--tint);border-radius:10px;padding:8px 10px;font-size:13px;margin-top:8px;line-height:1.55}
-.float{z-index:3;position:absolute;background:#fff;border-radius:14px;padding:10px 14px;font-size:14px;font-weight:700;box-shadow:0 10px 24px rgba(23,63,44,.18);display:flex;gap:8px;align-items:center;animation:bob 4s ease-in-out infinite}
+.float{z-index:3;position:absolute;background:#fff;border-radius:14px;padding:10px 14px;font-size:14px;font-weight:700;box-shadow:0 10px 24px rgba(23,63,44,.18);display:flex;gap:8px;align-items:center;animation:bob 4s ease-in-out 1}
 .float.a{top:48px;left:0;color:var(--green)}
-.float.b{bottom:64px;right:0;color:var(--orange);animation-delay:1.5s}
+.float.b{bottom:64px;right:0;color:#9A4A00;animation-delay:1.5s}
 @keyframes bob{50%{transform:translateY(-8px)}}
 
 /* what you can do */
@@ -98,9 +98,11 @@ h2{font-size:clamp(26px,4.4vw,38px);line-height:1.2;text-align:center;margin-bot
 .card .sub2{text-align:center;color:var(--muted);margin-bottom:24px;font-size:17px}
 label{display:block;font-weight:600;margin-bottom:6px;font-size:17px}
 .field{margin-bottom:18px}
-input[type=text],input[type=email]{width:100%;min-height:56px;padding:12px 16px;border:1.5px solid var(--border);border-radius:14px;font:inherit;color:var(--ink);background:#fff}
+input[type=text],input[type=email]{width:100%;min-height:56px;padding:12px 16px;border:2px solid #5F8570;border-radius:14px;font:inherit;color:var(--ink);background:#fff}
+::placeholder{color:#5A6F63;opacity:1}
 input[type=email]{direction:ltr;text-align:right}
-input:focus{border-color:var(--green-mid);background:#F7FCF9;outline:none}
+input:focus{border-color:var(--green);background:#F7FCF9}
+a:focus-visible,[tabindex="-1"]:focus-visible{outline:3px solid var(--green-mid);outline-offset:3px}
 input[aria-invalid=true]{border-color:var(--error)}
 .err{color:var(--error);font-size:15.5px;margin-top:6px}
 .hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);opacity:0;pointer-events:none}
@@ -117,7 +119,17 @@ input[aria-invalid=true]{border-color:var(--error)}
 .hidden{display:none!important}
 .org{max-width:640px;margin:36px auto 0;text-align:center;color:var(--muted);font-size:16px;background:#fff;border:1px dashed var(--border);border-radius:16px;padding:16px 20px}
 .org b{color:var(--ink)}
-footer{text-align:center;color:var(--muted);font-size:14.5px;padding:8px 20px 36px}
+footer{text-align:center;color:var(--muted);font-size:15px;padding:8px 20px 36px}
+footer a{color:var(--green-dark);font-weight:600;text-decoration:underline}
+.a11y{background:#fff;border-top:1px solid var(--border);padding:56px 0}
+.a11y:focus{outline:none}
+.a11y-body{max-width:720px;margin:0 auto}
+.a11y-body h3{font-size:20px;margin:22px 0 6px}
+.a11y-body p{margin:8px 0;font-size:17px}
+.a11y-body ul{margin:6px 0;padding-inline-start:22px;font-size:17px}
+.a11y-body li{margin:4px 0}
+.a11y-body .upd{color:var(--muted);font-size:15px;margin-top:18px}
+mark{background:#FFF0B3;color:var(--ink);padding:0 4px;border-radius:4px}
 
 @media (max-width:900px){.ideas{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:760px){
@@ -140,6 +152,7 @@ footer{text-align:center;color:var(--muted);font-size:14.5px;padding:8px 20px 36
 </style>
 </head>
 <body>
+<main id="main">
 <header class="hero"><div class="wrap">
  <div>
   <span class="chip">מתנדבים בקהילה</span>
@@ -174,10 +187,10 @@ footer{text-align:center;color:var(--muted);font-size:14.5px;padding:8px 20px 36
  <h2 id="t-ben">למה מתנדבים אוהבים את זה</h2>
  <p class="lead">יוצרים בשבילכם חוויה שמכבדת את הזמן שלכם.</p>
  <div class="bgrid">
-  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></div><div><h3>אתם בוחרים</h3><p>לוקחים רק בקשה שמתאימה לכם, ומתעלמים מהשאר בלי הסברים.</p></div></div>
-  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><div><h3>רואים מיד אם עוד צריכים</h3><p>הדף מתעדכן בזמן אמת. אם הבקשה כבר נלקחה, תדעו לפני שיצאתם מהבית.</p></div></div>
-  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div><h3>הפרטים נשמרים</h3><p>כתובת ופרטי הקשר המלאים נחשפים רק למי שלקח את הבקשה.</p></div></div>
-  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg></div><div><h3>בלי התחייבות</h3><p>אין מכסה ואין לחץ. עוזרים כשיש כוח, ומחכים כשאין.</p></div></div>
+  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></div><div><h3>אתם בוחרים</h3><p>לוקחים רק בקשה שמתאימה לכם, ומתעלמים מהשאר בלי הסברים.</p></div></div>
+  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div><div><h3>רואים מיד אם עוד צריכים</h3><p>הדף מתעדכן בזמן אמת. אם הבקשה כבר נלקחה, תדעו לפני שיצאתם מהבית.</p></div></div>
+  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><div><h3>הפרטים נשמרים</h3><p>כתובת ופרטי הקשר המלאים נחשפים רק למי שלקח את הבקשה.</p></div></div>
+  <div class="ben"><div class="ic"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg></div><div><h3>בלי התחייבות</h3><p>אין מכסה ואין לחץ. עוזרים כשיש כוח, ומחכים כשאין.</p></div></div>
  </div>
 </div></section>
 
@@ -211,12 +224,12 @@ footer{text-align:center;color:var(--muted);font-size:14.5px;padding:8px 20px 36
  <div class="card">
   <div id="formView">
    <h2 id="t-join">רוצים לעזור? מצטרפים בדקה</h2>
-   <p class="sub2">השאירו שם וכתובת מייל ונחזור אליכם עם הצעד הבא.</p>
+   <p class="sub2">שני השדות חובה. נחזור אליכם עם הצעד הבא.</p>
    <div id="banner" class="banner hidden" role="alert"></div>
    <form id="leadForm" novalidate>
     <div class="field"><label for="name">שם</label><input type="text" id="name" name="name" autocomplete="name" required aria-describedby="nameErr"><div class="err" id="nameErr" aria-live="polite"></div></div>
     <div class="field"><label for="email">כתובת מייל</label><input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com" required aria-describedby="emailErr"><div class="err" id="emailErr" aria-live="polite"></div></div>
-    <div class="hp" aria-hidden="true"><label>אל תמלאו<input type="text" id="website" tabindex="-1" autocomplete="off"></label></div>
+    <div class="hp" aria-hidden="true" inert><label>אל תמלאו<input type="text" id="website" tabindex="-1" autocomplete="off"></label></div>
     <button class="btn" type="submit" id="submitBtn">אני רוצה לעזור</button>
     <p class="fine">אין התחייבות. תלקחו רק מה שמתאים לכם.</p>
    </form>
@@ -229,7 +242,37 @@ footer{text-align:center;color:var(--muted);font-size:14.5px;padding:8px 20px 36
  </div>
  <div class="org"><b>עמותה?</b> הרכזת פותחת בקשה בדקה, וכל המתנדבים מקבלים אותה בבת אחת, בלי טלפונים אחד-אחד.</div>
 </div></section>
-<footer>מערכת להקפצת בקשות עזרה למתנדבים</footer>
+
+<section class="a11y" id="accessibility" aria-labelledby="t-a11y" tabindex="-1"><div class="wrap">
+ <h2 id="t-a11y">הצהרת נגישות</h2>
+ <div class="a11y-body">
+  <p>אנו רואים חשיבות בהנגשת הדף לכלל המשתמשים, כולל אנשים עם מוגבלות, ופועלים להתאים אותו לתקן הישראלי ת״י 5568 ברמה AA, בהתאם לחוק שוויון זכויות לאנשים עם מוגבלות, התשנ״ח-1998, ולתקנות שוויון זכויות לאנשים עם מוגבלות (התאמות נגישות לשירות), התשע״ג-2013.</p>
+  <h3>התאמות שבוצעו</h3>
+  <ul>
+   <li>מבנה כותרות הגיוני, וסימון האזור הראשי של הדף.</li>
+   <li>ניווט מלא במקלדת, עם סימון ברור של האלמנט הפעיל.</li>
+   <li>תוויות לשדות הטופס, והודעות שגיאה שקוראי מסך מקריאים.</li>
+   <li>ניגודיות צבעים מספקת בין הטקסט לרקע.</li>
+   <li>טקסט שניתן להגדלה עד 200% בלי אובדן תוכן, והתאמה לתצוגה בטלפון.</li>
+   <li>איורים שנועדו לעיצוב בלבד מוסתרים מקוראי מסך.</li>
+   <li>התחשבות בהגדרת "הפחתת תנועה" במכשיר.</li>
+   <li>הדף מוגדר כעברית וכתצוגה מימין לשמאל.</li>
+  </ul>
+  <h3>מגבלות ידועות</h3>
+  <p>ייתכן שחלקים מהדף עדיין אינם נגישים במלואם. הדף נבדק בבדיקות אוטומטיות ובבדיקה ידנית חלקית, ולא בוצע סקר נגישות מקצועי מלא.</p>
+  <h3>פנייה בנושא נגישות</h3>
+  <p>נתקלתם בבעיה, או שאתם צריכים את התוכן בדרך אחרת? פנו אל רכזת הנגישות:</p>
+  <ul>
+   <li>שם: <mark>[להשלים - שם רכזת הנגישות]</mark></li>
+   <li>טלפון: <mark>[להשלים]</mark></li>
+   <li>דוא״ל: <mark>[להשלים]</mark></li>
+  </ul>
+  <p>נשתדל להשיב בתוך <mark>[להשלים]</mark> ימי עבודה.</p>
+  <p class="upd">תאריך עדכון ההצהרה: 25.10.2026</p>
+ </div>
+</div></section>
+</main>
+<footer>מערכת להקפצת בקשות עזרה למתנדבים · <a href="#accessibility">הצהרת נגישות</a></footer>
 
 <script>
 /* ===== הגדרות =====
@@ -302,6 +345,16 @@ function send(payload){
     if(!res.ok){ throw new Error("http-" + res.status); }
   }, function(e){ clearTimeout(timer); throw e; });
 }
+
+/* מעבר פוקוס ליעד בקישורי עוגן, כדי שמשתמשי מקלדת וקוראי מסך יגיעו אליו */
+Array.prototype.forEach.call(document.querySelectorAll('a[href^="#"]'), function(a){
+  a.addEventListener("click", function(){
+    var t = document.getElementById(a.getAttribute("href").slice(1));
+    if(!t){ return; }
+    if(!t.hasAttribute("tabindex")){ t.setAttribute("tabindex","-1"); }
+    setTimeout(function(){ t.focus({preventScroll:true}); }, 50);
+  });
+});
 
 form.addEventListener("submit", function(e){
   e.preventDefault();
