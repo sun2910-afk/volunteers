@@ -154,9 +154,45 @@ footer a{color:var(--green-dark);font-weight:600;text-decoration:underline}
 }
 @media (max-width:430px){.ideas{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.thanks .ok svg{stroke-dashoffset:0}}
+
+/* לוגו וכותרת עליונה */
+.topbar{background:var(--card);border-bottom:1px solid var(--border)}
+.topbar-in{display:flex;align-items:center;min-height:64px}
+.brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--green)}
+.brand-name{font-family:"Segoe UI",Arial,sans-serif;font-weight:800;font-size:26px;letter-spacing:2px;direction:ltr;color:var(--green)}
+.skip-link{position:absolute;top:-60px;right:12px;background:var(--green-dark);color:#fff;padding:10px 16px;border-radius:0 0 10px 10px;z-index:10000;font-weight:700;text-decoration:none}
+.skip-link:focus{top:0}
+/* תפריט נגישות */
+.a11y-btn{position:fixed;left:16px;bottom:16px;z-index:9998;width:52px;height:52px;border-radius:50%;border:3px solid #fff;background:var(--green-dark);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.28)}
+.a11y-btn svg{width:28px;height:28px}
+.a11y-panel{position:fixed;left:16px;bottom:80px;z-index:9999;width:min(320px,calc(100vw - 32px));max-height:calc(100vh - 110px);overflow:auto;background:#fff;color:#1F3A2E;border:2px solid var(--green-dark);border-radius:16px;padding:14px;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.a11y-panel[hidden]{display:none}
+.a11y-panel h2{font-size:18px;margin:0 0 10px;text-align:right}
+.a11y-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.a11y-opt{font:inherit;font-size:15px;padding:10px 8px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:#1F3A2E;cursor:pointer;min-height:48px}
+.a11y-opt[aria-pressed="true"]{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}
+.a11y-reset{grid-column:1/-1;background:#fff}
+html{zoom:var(--a11y-zoom,1)}
+html.a11y-links a{text-decoration:underline!important;text-underline-offset:3px;font-weight:700}
+html.a11y-font body,html.a11y-font button,html.a11y-font input{font-family:Arial,Tahoma,sans-serif!important}
+html.a11y-space body{letter-spacing:.04em;word-spacing:.12em;line-height:1.9!important}
+html.a11y-focus *:focus{outline:4px solid #FF6D00!important;outline-offset:3px!important}
+html.a11y-noanim *,html.a11y-noanim *::before,html.a11y-noanim *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+html.a11y-contrast body,html.a11y-contrast main,html.a11y-contrast section,html.a11y-contrast header,html.a11y-contrast footer,html.a11y-contrast .topbar,html.a11y-contrast .card,html.a11y-contrast .chip{background:#000!important;color:#fff!important;border-color:#fff!important;box-shadow:none!important;background-image:none!important}
+html.a11y-contrast h1,html.a11y-contrast h2,html.a11y-contrast h3,html.a11y-contrast p,html.a11y-contrast li,html.a11y-contrast label,html.a11y-contrast span,html.a11y-contrast em,html.a11y-contrast .brand-name{color:#fff!important}
+html.a11y-contrast a{color:#FFEB3B!important}
+html.a11y-contrast .btn{background:#FFEB3B!important;color:#000!important;border-color:#fff!important}
+html.a11y-contrast input{background:#000!important;color:#fff!important;border:2px solid #fff!important}
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">דלגו לתוכן הראשי</a>
+<div class="topbar"><div class="wrap topbar-in">
+ <a class="brand" href="#main" aria-label="EZERLI - לתחילת הדף">
+  <svg class="brand-mark" width="40" height="40" viewBox="0 0 44 44" aria-hidden="true" focusable="false"><circle cx="21" cy="24" r="15" fill="none" stroke="#25804F" stroke-width="5"/><circle cx="35" cy="9" r="5.5" fill="#F0BE3C"/></svg>
+  <span class="brand-name">EZERLI</span>
+ </a>
+</div></div>
 <main id="main">
 <header class="hero"><div class="wrap">
  <div>
@@ -350,6 +386,49 @@ form.addEventListener("submit", function(e){
     showBanner(FAIL_MSG);
   });
 });
+</script>
+<button type="button" class="a11y-btn" id="a11yBtn" aria-expanded="false" aria-controls="a11yPanel" aria-label="תפריט נגישות">
+ <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="4.5" r="2.2"/><path d="M4 8.5h16v2.2h-6.2v3.2l2.3 6.6-2.1.8L12 15.4 9.9 21.3l-2.1-.8 2.3-6.6v-3.2H4z"/></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel" role="dialog" aria-label="תפריט נגישות" hidden>
+ <h2>תפריט נגישות</h2>
+ <div class="a11y-grid">
+  <button type="button" class="a11y-opt" data-act="bigger">הגדלת טקסט</button>
+  <button type="button" class="a11y-opt" data-act="smaller">הקטנת טקסט</button>
+  <button type="button" class="a11y-opt" data-act="contrast" aria-pressed="false">ניגודיות גבוהה</button>
+  <button type="button" class="a11y-opt" data-act="links" aria-pressed="false">הדגשת קישורים</button>
+  <button type="button" class="a11y-opt" data-act="font" aria-pressed="false">גופן קריא</button>
+  <button type="button" class="a11y-opt" data-act="space" aria-pressed="false">ריווח טקסט</button>
+  <button type="button" class="a11y-opt" data-act="focus" aria-pressed="false">מיקוד מודגש</button>
+  <button type="button" class="a11y-opt" data-act="noanim" aria-pressed="false">עצירת אנימציות</button>
+  <button type="button" class="a11y-opt a11y-reset" data-act="reset">איפוס הגדרות</button>
+ </div>
+ <p style="margin:10px 0 0;font-size:14px"><a href="accessibility.html">הצהרת נגישות</a></p>
+</div>
+<script>
+(function(){
+ var root=document.documentElement,btn=document.getElementById("a11yBtn"),panel=document.getElementById("a11yPanel");
+ var flags=["contrast","links","font","space","focus","noanim"];
+ var st={zoom:0};flags.forEach(function(f){st[f]=false;});
+ try{var s=JSON.parse(localStorage.getItem("ezerliA11y")||"null");if(s){st=s;}}catch(e){}
+ function save(){try{localStorage.setItem("ezerliA11y",JSON.stringify(st));}catch(e){}}
+ function apply(){
+  var z=[1,1.15,1.3][st.zoom]||1;root.style.setProperty("--a11y-zoom",z);
+  flags.forEach(function(f){root.classList.toggle("a11y-"+f,!!st[f]);var b=panel.querySelector("[data-act="+f+"]");if(b){b.setAttribute("aria-pressed",st[f]?"true":"false");}});
+ }
+ function toggle(open){panel.hidden=!open;btn.setAttribute("aria-expanded",open?"true":"false");if(open){var f=panel.querySelector("button");if(f){f.focus();}}else{btn.focus();}}
+ btn.addEventListener("click",function(){toggle(panel.hidden);});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!panel.hidden){toggle(false);}});
+ panel.addEventListener("click",function(e){
+  var b=e.target.closest("[data-act]");if(!b){return;}var a=b.getAttribute("data-act");
+  if(a==="bigger"){st.zoom=Math.min(2,st.zoom+1);}
+  else if(a==="smaller"){st.zoom=Math.max(0,st.zoom-1);}
+  else if(a==="reset"){st={zoom:0};flags.forEach(function(f){st[f]=false;});}
+  else{st[a]=!st[a];}
+  apply();save();
+ });
+ apply();
+})();
 </script>
 <script src="https://cdn.botpress.cloud/webchat/v3.7/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2026/11/02/07/20261102071315-GZV1DTFU.js" defer></script>
