@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>מתנדבים כשנוח לכם</title>
 <meta name="description" content="הצטרפו כמתנדבים: מקבלים הודעה קצרה על מי שצריך עזרה, ולוקחים רק מה שמתאים לכם.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="he_IL">
+<meta property="og:site_name" content="EZERLI">
+<meta property="og:title" content="EZERLI · מתנדבים כשנוח לכם">
+<meta property="og:description" content="מקבלים הודעה קצרה על בקשת עזרה בקהילה, ולוקחים רק מה שמתאים לכם.">
+<meta property="og:url" content="https://sun2910-afk.github.io/volunteers/">
+<meta property="og:image" content="https://sun2910-afk.github.io/volunteers/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="EZERLI - סמל הפתרון על רקע ירוק עם עיגולים">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EZERLI · מתנדבים כשנוח לכם">
+<meta name="twitter:description" content="מקבלים הודעה קצרה על בקשת עזרה בקהילה, ולוקחים רק מה שמתאים לכם.">
+<meta name="twitter:image" content="https://sun2910-afk.github.io/volunteers/share.jpg">
 <style>
 :root{--green:#25804F;--green-dark:#1E6A41;--green-mid:#3DAA73;--tint:#DDF3E5;--bg:#F4F9F5;--card:#fff;--border:#B9DCC6;--ink:#1F3A2E;--muted:#4F6B5B;--accent:#F4B942;--orange:#E8872B;--error:#C23B3B;--error-bg:#FBECEC;--deep:#173F2C}
 *{box-sizing:border-box}
@@ -215,7 +229,7 @@ footer a{color:var(--green-dark);font-weight:600;text-decoration:underline}
  <div class="card">
   <div id="formView">
    <h2 id="t-join">רוצים לעזור? מצטרפים בדקה</h2>
-   <p class="sub2">שני השדות חובה. נחזור אליכם עם הצעד הבא.</p>
+   <p class="sub2">שני השדות חובה. הפרטים ישמשו רק ליצירת קשר בנושא התנדבות.</p>
    <div id="banner" class="banner hidden" role="alert"></div>
    <form id="leadForm" novalidate>
     <div class="field"><label for="name">שם</label><input type="text" id="name" name="name" autocomplete="name" required aria-describedby="nameErr"><div class="err" id="nameErr" aria-live="polite"></div></div>
@@ -337,5 +351,7 @@ form.addEventListener("submit", function(e){
   });
 });
 </script>
+<script src="https://cdn.botpress.cloud/webchat/v3.7/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/11/02/07/20261102071315-GZV1DTFU.js" defer></script>
 </body>
 </html>
